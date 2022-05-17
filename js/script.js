@@ -129,8 +129,6 @@ console.log(icons);
 
 const iconBox = document.querySelector(".box");
 const iconImage = document.querySelector(".box i");
-iconImage.style.color = "#FF0000";
-console.log(iconBox);
 
 function iconInfo (name , prefix) {
     return `
@@ -148,7 +146,6 @@ for (let i = 0 ; i < icons.length ; i++) {
 
 const animal = icons.filter(
     function (color) {
-        iconImage.style.color = "#FF0000";
         return color.type === "animal";
     }
 );
