@@ -1,9 +1,20 @@
-.animal-color {
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    text-align: center;
+}
+
+
+.orange {
     color: orange;
 }
-.vegetable-color {
+.green {
     color: green;
 }
-.user-color {
+.blue {
     color: blue;
 }

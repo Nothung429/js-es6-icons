@@ -125,42 +125,34 @@ const icons = [
 		color: 'blue'
 	}
 ];
-console.log(icons);
 
 const iconBox = document.querySelector(".box");
 const iconImage = document.querySelector(".box i");
 
-function iconInfo (name , prefix) {
+function iconInfo (icon) {
     return `
         <div class="box">
-            <h2 class="title">${name}</h2>
-            <i class="${prefix}solid ${prefix}${name}"></i>
+            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
+            <span class="title">${icon.name}</span>
         </div>
     `;
 };
 
 for (let i = 0 ; i < icons.length ; i++) {
-    const icon =  iconInfo(icons[i].name, icons[i].prefix, icons[i].prefix, icons[i].name);
+    const icon =  iconInfo(icons[i]);
     iconBox.innerHTML += icon;
 }
+console.log(iconBox);
 
-const animal = icons.filter(
-    function (color) {
-        return color.type === "animal";
-    }
-);
-console.log(animal);
 
 const vegetable = icons.filter(
     function (color) {
         return color.type === "vegetable";
     }
 );
-console.log(vegetable);
 
 const user = icons.filter(
     function (color) {
         return color.type === "user";
     }
 );
-console.log(user);
