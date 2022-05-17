@@ -144,15 +144,29 @@ for (let i = 0 ; i < icons.length ; i++) {
 }
 console.log(iconBox);
 
-
-const vegetable = icons.filter(
-    function (color) {
-        return color.type === "vegetable";
-    }
-);
-
-const user = icons.filter(
-    function (color) {
-        return color.type === "user";
+const iconType = document.querySelector("#iconType");
+iconType.addEventListener("change", 
+    function () {
+        const animal = icons.filter(
+            function (color) {
+                return color.type === "animal";
+            }
+        );
+        const vegetable = icons.filter(
+            function (color) {
+                return color.type === "vegetable";
+            }
+        );
+        
+        const user = icons.filter(
+            function (color) {
+                return color.type === "user";
+            }
+        );
+        if (animal === iconType.animal) {
+            vegetable.style.display = "none";
+            user.style.display = "none";
+        }
+        console.log(iconType.value);
     }
 );
