@@ -127,12 +127,14 @@ const icons = [
 ];
 console.log(icons);
 
-const iconBox = document.querySelector("#box");
+const iconBox = document.querySelector(".box");
+const iconImage = document.querySelector(".box i");
+iconImage.style.color = "#FF0000";
 console.log(iconBox);
 
 function iconInfo (name , prefix) {
     return `
-        <div id="box">
+        <div class="box">
             <h2 class="title">${name}</h2>
             <i class="${prefix}solid ${prefix}${name}"></i>
         </div>
@@ -143,3 +145,25 @@ for (let i = 0 ; i < icons.length ; i++) {
     const icon =  iconInfo(icons[i].name, icons[i].prefix, icons[i].prefix, icons[i].name);
     iconBox.innerHTML += icon;
 }
+
+const animal = icons.filter(
+    function (color) {
+        iconImage.style.color = "#FF0000";
+        return color.type === "animal";
+    }
+);
+console.log(animal);
+
+const vegetable = icons.filter(
+    function (color) {
+        return color.type === "vegetable";
+    }
+);
+console.log(vegetable);
+
+const user = icons.filter(
+    function (color) {
+        return color.type === "user";
+    }
+);
+console.log(user);
