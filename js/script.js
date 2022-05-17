@@ -138,35 +138,38 @@ function iconInfo (icon) {
     `;
 };
 
+function selectInfo (icon) {
+    return `
+        <div class="select-box">
+            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
+            <span class="title">${icon.name}</span>
+        </div>
+    `;
+};
+
 for (let i = 0 ; i < icons.length ; i++) {
     const icon =  iconInfo(icons[i]);
     iconBox.innerHTML += icon;
 }
 console.log(iconBox);
 
+const selectBox = document.querySelector(".select-box");
+const selectImage = document.querySelector(".select-box i");
 const iconType = document.querySelector("#iconType");
 iconType.addEventListener("change", 
     function () {
-        const animal = icons.filter(
+        const filteredIcons = icons.filter(
             function (color) {
-                return color.type === "animal";
+                return color.type === iconType.value 
             }
         );
-        const vegetable = icons.filter(
-            function (color) {
-                return color.type === "vegetable";
-            }
-        );
-        
-        const user = icons.filter(
-            function (color) {
-                return color.type === "user";
-            }
-        );
-        if (animal === iconType.animal) {
-            vegetable.style.display = "none";
-            user.style.display = "none";
+        console.log(filteredIcons);
+        iconBox.style.display = "none";
+        for (let i = 0 ; i < filteredIcons.length ; i++) {
+            const icon =  iconInfo(filteredIcons[i]);
+            selectBox.innerHTML += icon;
+            selectBox.style.display = "block";
         }
-        console.log(iconType.value);
-    }
+        console.log(selectBox);
+    }    
 );
