@@ -125,3 +125,21 @@ const icons = [
 		color: 'blue'
 	}
 ];
+console.log(icons);
+
+const iconBox = document.querySelector("#box");
+console.log(iconBox);
+
+function iconInfo (name , prefix) {
+    return `
+        <div id="box">
+            <h2 class="title">${name}</h2>
+            <i class="${prefix}solid ${prefix}${name}"></i>
+        </div>
+    `;
+};
+
+for (let i = 0 ; i < icons.length ; i++) {
+    const icon =  iconInfo(icons[i].name, icons[i].prefix, icons[i].prefix, icons[i].name);
+    iconBox.innerHTML += icon;
+}
