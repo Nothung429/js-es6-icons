@@ -1,16 +1,22 @@
-// Milestone 1
-// Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa
+//------ FUNCTION ------//
+function iconInfo (icon) {
+    return `
+        <div class="box">
+            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
+            <span class="title">${icon.name}</span>
+        </div>
+    `;
+};
+function selectInfo (icon) {
+    return `
+        <div class="select-box">
+            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
+            <span class="title">${icon.name}</span>
+        </div>
+    `;
+};
 
-// Milestone 2
-// Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente
-
-// Milestone 3
-// Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti
-
-// BONUS
-// 1- modificare la struttura dati fornita e valorizzare la proprietà "color" in modo dinamico: generare in modo casuale un codice colore, sapendo che la notazione esadecimale è formata dal simbolo "#" seguito da 6 caratteri alfanumerici compresi tra 0 e 9 e A e F
-// 2- popolare le options della select della milestone 3 dinamicamente
-
+//------ MAIN ------//
 const icons = [
 	{
 		name: 'cat',
@@ -129,24 +135,6 @@ const icons = [
 const iconBox = document.querySelector(".box");
 const iconImage = document.querySelector(".box i");
 
-function iconInfo (icon) {
-    return `
-        <div class="box">
-            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
-            <span class="title">${icon.name}</span>
-        </div>
-    `;
-};
-
-function selectInfo (icon) {
-    return `
-        <div class="select-box">
-            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
-            <span class="title">${icon.name}</span>
-        </div>
-    `;
-};
-
 for (let i = 0 ; i < icons.length ; i++) {
     const icon =  iconInfo(icons[i]);
     iconBox.innerHTML += icon;
@@ -159,8 +147,8 @@ const iconType = document.querySelector("#iconType");
 iconType.addEventListener("change", 
     function () {
         const filteredIcons = icons.filter(
-            function (color) {
-                return color.type === iconType.value 
+            function (selectIcon) {
+                return selectIcon.type === iconType.value 
             }
         );
         console.log(filteredIcons);
