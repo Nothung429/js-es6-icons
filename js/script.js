@@ -1,163 +1,31 @@
 //------ FUNCTION ------//
-function iconInfo (icon) {
-    return `
-        <div class="box">
-            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
-            <span class="title">${icon.name}</span>
-        </div>
-    `;
-};
-function selectInfo (icon) {
-    return `
-        <div class="select-box">
-            <i class="${icon.prefix}solid ${icon.prefix}${icon.name} ${icon.color}"></i>
-            <span class="title">${icon.name}</span>
-        </div>
-    `;
+function iconInfo (icons, container) {
+    container.innerHTML = "";
+    icons.forEach(element => {
+        const icon = `
+            <div class="box">
+                <i class="${element.prefix}solid ${element.prefix}${element.name} ${element.color}"></i>
+                <span class="title">${element.name}</span>
+            </div>
+        `;
+        container.innerHTML += icon;
+    });
 };
 
 //------ MAIN ------//
-const icons = [
-	{
-		name: 'cat',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'crow',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'dog',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'dove',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'dragon',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'horse',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'hippo',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'fish',
-		prefix: 'fa-',
-		type: 'animal',
-		family: 'fas',
-		color: 'orange'
-	},
-	{
-		name: 'carrot',
-		prefix: 'fa-',
-		type: 'vegetable',
-		family: 'fas',
-		color: 'green'
-	},
-	{
-		name: 'apple-alt',
-		prefix: 'fa-',
-		type: 'vegetable',
-		family: 'fas',
-		color: 'green'
-	},
-	{
-		name: 'lemon',
-		prefix: 'fa-',
-		type: 'vegetable',
-		family: 'fas',
-		color: 'green'
-	},
-	{
-		name: 'pepper-hot',
-		prefix: 'fa-',
-		type: 'vegetable',
-		family: 'fas',
-		color: 'green'
-	},
-	{
-		name: 'user-astronaut',
-		prefix: 'fa-',
-		type: 'user',
-		family: 'fas',
-		color: 'blue'
-	},
-	{
-		name: 'user-graduate',
-		prefix: 'fa-',
-		type: 'user',
-		family: 'fas',
-		color: 'blue'
-	},
-	{
-		name: 'user-ninja',
-		prefix: 'fa-',
-		type: 'user',
-		family: 'fas',
-		color: 'blue'
-	},
-	{
-		name: 'user-secret',
-		prefix: 'fa-',
-		type: 'user',
-		family: 'fas',
-		color: 'blue'
-	}
-];
+const iconBox = document.querySelector(".container");
+iconInfo(icons, iconBox);
 
-const iconBox = document.querySelector(".box");
-const iconImage = document.querySelector(".box i");
-
-for (let i = 0 ; i < icons.length ; i++) {
-    const icon =  iconInfo(icons[i]);
-    iconBox.innerHTML += icon;
-}
-console.log(iconBox);
-
-const selectBox = document.querySelector(".select-box");
-const selectImage = document.querySelector(".select-box i");
-const iconType = document.querySelector("#iconType");
+const iconType = document.querySelector(".icon-type");
 iconType.addEventListener("change", 
     function () {
-        const filteredIcons = icons.filter(
-            function (selectIcon) {
-                return selectIcon.type === iconType.value 
+        const iconValue = iconType.value;
+        const iconSelect = icons.filter(
+            function (family) {
+                return family.type === iconValue;
             }
         );
-        console.log(filteredIcons);
-        iconBox.style.display = "none";
-        for (let i = 0 ; i < filteredIcons.length ; i++) {
-            const icon =  iconInfo(filteredIcons[i]);
-            selectBox.innerHTML += icon;
-            selectBox.style.display = "block";
-        }
-        console.log(selectBox);
-    }    
+        console.log(iconSelect);
+        iconInfo(iconSelect, iconBox);
+    }
 );
